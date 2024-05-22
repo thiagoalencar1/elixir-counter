@@ -18,8 +18,8 @@ defmodule CounterWeb.Counter do
     <div>
       <h1 class="text-4xl font-bold text-center">The count is: <%= @val %></h1>
       <p class="text-center">
-        <.button>-</.button>
-        <.button>+</.button>
+        <.button phx-click="dec">-</.button>
+        <.button phx-click="inc">+</.button>
       </p>
     </div>
     """
