@@ -9,7 +9,17 @@ defmodule Counter.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        c: :test,
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.json": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test,
+        t: :test
+      ]
     ]
   end
 
@@ -50,7 +60,8 @@ defmodule Counter.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.2"}
+      {:bandit, "~> 1.2"},
+      {:excoveralls, "~> 0.18.1", only: [:test, :dev]}
     ]
   end
 
@@ -69,7 +80,10 @@ defmodule Counter.MixProject do
         "tailwind counter --minify",
         "esbuild counter --minify",
         "phx.digest"
-      ]
+      ],
+      c: ["coveralls.html"],
+      s: ["phx.server"],
+      t: ["test"]
     ]
   end
 end
